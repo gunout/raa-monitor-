@@ -2,16 +2,16 @@
 
 > **Explorateur des Recueils des Actes Administratifs des préfectures françaises**
 
-![Documents](https://img.shields.io/badge/Documents-22%20771-blue?style=flat-square)
-![Départements](https://img.shields.io/badge/D%C3%A9partements-90-green?style=flat-square)
-![Préfectures](https://img.shields.io/badge/Pr%C3%A9fectures-88-orange?style=flat-square)
-![Catégories](https://img.shields.io/badge/Cat%C3%A9gories-6-purple?style=flat-square)
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-![Licence](https://img.shields.io/badge/Licence-MIT-yellow?style=flat-square)
-![Statut](https://img.shields.io/badge/Statut-Actif-brightgreen?style=flat-square)
+[![Documents](https://img.shields.io/badge/Documents-22%20771-blue?style=flat-square)](https://github.com/gunout/raa-monitor-)
+[![Départements](https://img.shields.io/badge/D%C3%A9partements-90-green?style=flat-square)](https://github.com/gunout/raa-monitor-)
+[![Préfectures](https://img.shields.io/badge/Pr%C3%A9fectures-88-orange?style=flat-square)](https://github.com/gunout/raa-monitor-)
+[![Catégories](https://img.shields.io/badge/Cat%C3%A9gories-6-purple?style=flat-square)](https://github.com/gunout/raa-monitor-)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/fr/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/fr/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+[![Licence MIT](https://img.shields.io/badge/Licence-MIT-yellow?style=flat-square)](https://github.com/gunout/raa-monitor-/blob/main/LICENSE)
+[![Statut](https://img.shields.io/badge/Statut-Actif-brightgreen?style=flat-square)](https://github.com/gunout/raa-monitor-)
 
 ---
 
@@ -50,22 +50,22 @@ L'application agrège les documents publiés au format PDF sur les sites des pr�
 
 ### Côté utilisateur
 
-- 🔍 Recherche plein texte — titre, numéro, préfecture, département, région
-- 🎯 Filtres combinables — préfecture, département, type, année, tri
-- 📊 Statistiques temps réel — répartition par type, top 10 préfectures
-- 📥 Export CSV — téléchargement des résultats filtrés
-- 📋 Copie en masse — toutes les URLs en un clic
-- ⚡ Pagination fluide — 25, 50 ou 100 résultats par page
-- ⌨️ Raccourcis clavier — navigation rapide sans souris
+- 🔍 **Recherche plein texte** — titre, numéro, préfecture, département, région
+- 🎯 **Filtres combinables** — préfecture, département, type, année, tri
+- 📊 **Statistiques temps réel** — répartition par type, top 10 préfectures
+- 📥 **Export CSV** — téléchargement des résultats filtrés
+- 📋 **Copie en masse** — toutes les URLs en un clic
+- ⚡ **Pagination fluide** — 25, 50 ou 100 résultats par page
+- ⌨️ **Raccourcis clavier** — navigation rapide sans souris
 
 ### Côté données
 
-- 🧹 Nettoyage automatique — accents, espaces, retours ligne
-- 🔗 Validation d'URL — rejet des liens invalides
-- 🗓️ Extraction de dates — parsing automatique depuis les titres
-- 🏷️ Catégorisation intelligente — 6 types de documents
-- 🔍 Déduplication — basée sur l'URL unique
-- ✅ Contrôle qualité — 8 vérifications automatiques
+- 🧹 **Nettoyage automatique** — accents, espaces, retours ligne
+- 🔗 **Validation d'URL** — rejet des liens invalides
+- 🗓️ **Extraction de dates** — parsing automatique depuis les titres
+- 🏷️ **Catégorisation intelligente** — 6 types de documents
+- 🔍 **Déduplication** — basée sur l'URL unique
+- ✅ **Contrôle qualité** — 8 vérifications automatiques
 
 ---
 
@@ -77,49 +77,48 @@ L'application agrège les documents publiés au format PDF sur les sites des pr�
 - Un navigateur moderne (Chrome, Firefox, Safari, Edge)
 - Aucune dépendance Python externe
 
-### Étapes
+### Cloner le dépôt
 
-Se placer dans le dossier du projet :
+    git clone https://github.com/gunout/raa-monitor-.git
+    cd raa-monitor-
 
-    cd ~/Desktop/PREFECTURE
-
-Vérifier la version de Python :
-
-    python3 --version
-
-Construire la base de données :
+### Construire la base de données
 
     python3 load_raa.py
     python3 convert.py
     python3 verify.py
 
-Lancer l'interface web :
+### Lancer l'interface web
 
     python3 -m http.server 8000
 
 Puis ouvrir l'adresse locale sur le port 8000 dans un navigateur.
 
-**Important** — ne pas ouvrir index.html par double-clic. En mode file://, le navigateur bloque la lecture du fichier JSON.
+**Important** — ne pas ouvrir `index.html` par double-clic. En mode `file://`, le navigateur bloque la lecture du fichier JSON.
 
 ---
 
 ## 📁 Arborescence
 
-    PREFECTURE/
-    ├── raa_flat.csv           Source brute
-    ├── raa_clean.csv          Source nettoyée
+    raa-monitor-/
+    ├── raa_flat.csv              Source brute
+    ├── raa_clean.csv             Source nettoyée
     ├── json/
-    │   └── raa.json           Base finale
-    ├── load_raa.py            Nettoyage CSV
-    ├── convert.py             CSV vers JSON
-    ├── verify.py              Contrôle qualité
-    ├── index.html             Front-end
-    ├── README.md              Documentation
-    └── LICENSE                Licence MIT
+    │   └── raa.json              Base finale
+    ├── load_raa.py               Nettoyage CSV
+    ├── convert.py                CSV vers JSON
+    ├── verify.py                 Contrôle qualité
+    ├── index.html                Front-end
+    ├── prefecture.json           Données préfectures
+    ├── prefectures_verified.json Préfectures vérifiées
+    ├── prefectures_report.txt    Rapport préfectures
+    ├── raa_index.json            Index RAA
+    ├── README.md                 Documentation
+    └── LICENSE                   Licence MIT
 
 ### Pipeline de données
 
-raa_flat.csv → load_raa.py → raa_clean.csv → convert.py → json/raa.json → index.html
+`raa_flat.csv` → `load_raa.py` → `raa_clean.csv` → `convert.py` → `json/raa.json` → `index.html`
 
 ---
 
@@ -127,18 +126,18 @@ raa_flat.csv → load_raa.py → raa_clean.csv → convert.py → json/raa.json 
 
 ### Format JSON
 
-Chaque enregistrement contient les champs suivants : id, departement, nom_departement, region, titre, type, numero, date_publication, url, mise_a_jour, annee, description, tags.
+Chaque enregistrement contient les champs suivants : `id`, `departement`, `nom_departement`, `region`, `titre`, `type`, `numero`, `date_publication`, `url`, `mise_a_jour`, `annee`, `description`, `tags`.
 
 ### Catégories de documents
 
 | Icône | Catégorie | Description | Volume |
 |:---:|---|---|---:|
-| 📋 | recueil | Recueil complet des actes administratifs | 692 |
-| 📜 | arrete | Arrêté préfectoral isolé | 668 |
-| ⚖️ | decision | Décision administrative | 39 |
-| ⚡ | special | Recueil spécial | 8 204 |
-| 👤 | nominatif | Recueil nominatif | 2 429 |
-| 📁 | autre | Autres documents | 10 739 |
+| 📋 | `recueil` | Recueil complet des actes administratifs | 692 |
+| 📜 | `arrete` | Arrêté préfectoral isolé | 668 |
+| ⚖️ | `decision` | Décision administrative | 39 |
+| ⚡ | `special` | Recueil spécial | 8 204 |
+| 👤 | `nominatif` | Recueil nominatif | 2 429 |
+| 📁 | `autre` | Autres documents | 10 739 |
 | | | **Total** | **22 771** |
 
 ### Couverture géographique
@@ -150,7 +149,7 @@ Chaque enregistrement contient les champs suivants : id, departement, nom_depart
 | DROM | 5 sur 5 (971, 972, 973, 974, 976) | ✅ |
 | COM | 0 sur 7 | ⚠️ Non publié |
 
-Départements manquants (scraping amont) : 17, 38, 51, 54, 55, 57, 67, 75, 79, 85, 95
+Départements manquants (scraping amont) : `17`, `38`, `51`, `54`, `55`, `57`, `67`, `75`, `79`, `85`, `95`
 
 ---
 
@@ -170,23 +169,23 @@ Départements manquants (scraping amont) : 17, 38, 51, 54, 55, 57, 67, 75, 79, 8
 
 | Touche | Action |
 |:---:|---|
-| / | Focus sur la barre de recherche |
-| Échap | Retirer le focus |
-| Entrée | Lancer la recherche |
+| `/` | Focus sur la barre de recherche |
+| `Échap` | Retirer le focus |
+| `Entrée` | Lancer la recherche |
 
 ### Actions disponibles
 
-- 📥 Export CSV — télécharge les résultats filtrés
-- 📋 Copier les URLs — copie en masse dans le presse-papier
-- 🔄 Réinitialiser — efface tous les filtres
+- 📥 **Export CSV** — télécharge les résultats filtrés
+- 📋 **Copier les URLs** — copie en masse dans le presse-papier
+- 🔄 **Réinitialiser** — efface tous les filtres
 
 ---
 
 ## 🧪 Contrôle qualité
 
-verify.py effectue 8 vérifications automatiques :
+`verify.py` effectue 8 vérifications automatiques :
 
-1. Cohérence count vs len(results)
+1. Cohérence `count` vs `len(results)`
 2. Validité des codes département
 3. Présence des 101 départements
 4. Couverture DROM
@@ -202,12 +201,12 @@ verify.py effectue 8 vérifications automatiques :
 | Couche | Technologie |
 |---|---|
 | Backend | Python 3.10+ (stdlib) |
-| Traitement CSV | csv, re, unicodedata |
-| Traitement JSON | json, pathlib |
+| Traitement CSV | `csv`, `re`, `unicodedata` |
+| Traitement JSON | `json`, `pathlib` |
 | Front-end | HTML5, CSS3, JavaScript vanilla |
 | Design system | DSFR 1.11.2 |
 | Polices | Marianne |
-| Couleurs | Bleu #000091, Rouge #E1000F |
+| Couleurs | Bleu `#000091`, Rouge `#E1000F` |
 
 Aucun framework JavaScript. Aucune dépendance Python.
 
@@ -217,26 +216,26 @@ Aucun framework JavaScript. Aucune dépendance Python.
 
 ### GitHub Pages
 
-1. Pousser index.html et json/raa.json
-2. Activer GitHub Pages dans Settings → Pages
-3. Sélectionner la branche main
+1. Pousser `index.html` et `json/raa.json`
+2. Activer GitHub Pages dans **Settings → Pages**
+3. Sélectionner la branche `main`
 
 ### Netlify / Vercel
 
-Glisser-déposer le dossier PREFECTURE.
+Glisser-déposer le dossier `raa-monitor-`.
 
 ### Nginx
 
-Configuration type : servir le dossier en statique, ajouter un cache d'une heure sur /json/.
+Configuration type : servir le dossier en statique, ajouter un cache d'une heure sur `/json/`.
 
 ---
 
 ## 🤝 Contribution
 
 1. Forker le projet
-2. Créer une branche : git checkout -b feature/x
-3. Commiter : git commit -m 'Ajout X'
-4. Pousser : git push origin feature/x
+2. Créer une branche : `git checkout -b feature/x`
+3. Commiter : `git commit -m 'Ajout X'`
+4. Pousser : `git push origin feature/x`
 5. Ouvrir une Pull Request
 
 ### Priorités
@@ -256,14 +255,14 @@ Configuration type : servir le dossier en statique, ajouter un cache d'une heure
 | # | Problème | Contournement |
 |:---:|---|---|
 | 1 | 11 dépts métropole absents | Corriger le scraper amont |
-| 2 | fetch() bloqué en file:// | Serveur HTTP local |
+| 2 | `fetch()` bloqué en `file://` | Serveur HTTP local |
 | 3 | Titres parfois tronqués | Source amont |
 
 ---
 
 ## 📜 Licence
 
-MIT. Voir le fichier LICENSE.
+MIT. Voir le fichier [LICENSE](https://github.com/gunout/raa-monitor-/blob/main/LICENSE).
 
 ---
 
