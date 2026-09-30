@@ -1,0 +1,477 @@
+RAPPORT DE VÉRIFICATION DES PRÉFECTURES (V2)
+======================================================================
+
+Date : 2026-09-30 21:03:10
+Total : 114 | Accessibles : 0 | Publications : 0
+
+
+──────────────────────────────────────────────────────────────────────
+REGIONS
+──────────────────────────────────────────────────────────────────────
+
+❌    [ 84] Auvergne-Rhône-Alpes
+      URL : https://www.prefectures-regions.gouv.fr/auvergne-rhone-alpes
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 27] Bourgogne-Franche-Comté
+      URL : https://www.prefectures-regions.gouv.fr/bourgogne-franche-comte
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 53] Bretagne
+      URL : https://www.prefectures-regions.gouv.fr/bretagne
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 24] Centre-Val de Loire
+      URL : https://www.prefectures-regions.gouv.fr/centre-val-de-loire
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 94] Corse
+      URL : https://www.prefectures-regions.gouv.fr/corse
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 44] Grand Est
+      URL : https://www.prefectures-regions.gouv.fr/grand-est
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 32] Hauts-de-France
+      URL : https://www.prefectures-regions.gouv.fr/hauts-de-france
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 28] Normandie
+      URL : https://www.prefectures-regions.gouv.fr/normandie
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 75] Nouvelle-Aquitaine
+      URL : https://www.prefectures-regions.gouv.fr/ile-de-france
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 76] Occitanie
+      URL : https://www.prefectures-regions.gouv.fr/occitanie
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 52] Pays de la Loire
+      URL : https://www.prefectures-regions.gouv.fr/pays-de-la-loire
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 93] Provence-Alpes-Côte d'Azur
+      URL : https://www.prefectures-regions.gouv.fr/provence-alpes-cote-dazur
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 11] Île-de-France
+      URL : https://www.prefectures-regions.gouv.fr/ile-de-france
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+
+──────────────────────────────────────────────────────────────────────
+DEPARTEMENTS
+──────────────────────────────────────────────────────────────────────
+
+❌    [ 01] Ain
+      URL : https://www.ain.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.ain.gouv.fr', port=443): Max retries exceeded withConnectionError: HTTPSConnectionPool(host='www.ain.gouv.fr', port=443): Max retries exceeded with
+
+❌    [ 02] Aisne
+      URL : https://www.aisne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.aisne.gouv.fr', port=443): Max retries exceeded wiConnectionError: HTTPSConnectionPool(host='www.aisne.gouv.fr', port=443): Max retries exceeded wi
+
+❌    [ 03] Allier
+      URL : https://www.allier.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.allier.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.allier.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 06] Alpes-Maritimes
+      URL : https://www.alpes-maritimes.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.alpes-maritimes.gouv.fr', port=443): Max retries eConnectionError: HTTPSConnectionPool(host='www.alpes-maritimes.gouv.fr', port=443): Max retries e
+
+❌    [ 04] Alpes-de-Haute-Provence
+      URL : https://www.alpes-de-haute-provence.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.alpes-de-haute-provence.gouv.fr', port=443): Max rConnectionError: HTTPSConnectionPool(host='www.alpes-de-haute-provence.gouv.fr', port=443): Max r
+
+❌    [ 08] Ardennes
+      URL : https://www.ardennes.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.ardennes.gouv.fr', port=443): Max retries exceededConnectionError: HTTPSConnectionPool(host='www.ardennes.gouv.fr', port=443): Max retries exceeded
+
+❌    [ 07] Ardèche
+      URL : https://www.ardeche.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.ardeche.gouv.fr', port=443): Max retries exceeded ConnectionError: HTTPSConnectionPool(host='www.ardeche.gouv.fr', port=443): Max retries exceeded 
+
+❌    [ 09] Ariège
+      URL : https://www.ariege.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.ariege.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.ariege.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 10] Aube
+      URL : https://www.aube.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.aube.gouv.fr', port=443): Max retries exceeded witConnectionError: HTTPSConnectionPool(host='www.aube.gouv.fr', port=443): Max retries exceeded wit
+
+❌    [ 11] Aude
+      URL : https://www.aude.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.aude.gouv.fr', port=443): Max retries exceeded witConnectionError: HTTPSConnectionPool(host='www.aude.gouv.fr', port=443): Max retries exceeded wit
+
+❌    [ 12] Aveyron
+      URL : https://www.aveyron.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.aveyron.gouv.fr', port=443): Max retries exceeded ConnectionError: HTTPSConnectionPool(host='www.aveyron.gouv.fr', port=443): Max retries exceeded 
+
+❌    [ 67] Bas-Rhin
+      URL : https://www.bas-rhin.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.bas-rhin.gouv.fr', port=443): Max retries exceededConnectionError: HTTPSConnectionPool(host='www.bas-rhin.gouv.fr', port=443): Max retries exceeded
+
+❌    [ 13] Bouches-du-Rhône
+      URL : https://www.bouches-du-rhone.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.bouches-du-rhone.gouv.fr', port=443): Max retries ConnectionError: HTTPSConnectionPool(host='www.bouches-du-rhone.gouv.fr', port=443): Max retries 
+
+❌    [ 14] Calvados
+      URL : https://www.calvados.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.calvados.gouv.fr', port=443): Max retries exceededConnectionError: HTTPSConnectionPool(host='www.calvados.gouv.fr', port=443): Max retries exceeded
+
+❌    [ 15] Cantal
+      URL : https://www.cantal.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.cantal.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.cantal.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 16] Charente
+      URL : https://www.charente.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.charente.gouv.fr', port=443): Max retries exceededConnectionError: HTTPSConnectionPool(host='www.charente.gouv.fr', port=443): Max retries exceeded
+
+❌    [ 17] Charente-Maritime
+      URL : https://www.charente-maritime.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.charente-maritime.gouv.fr', port=443): Max retriesConnectionError: HTTPSConnectionPool(host='www.charente-maritime.gouv.fr', port=443): Max retries
+
+❌    [ 18] Cher
+      URL : https://www.cher.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.cher.gouv.fr', port=443): Max retries exceeded witConnectionError: HTTPSConnectionPool(host='www.cher.gouv.fr', port=443): Max retries exceeded wit
+
+❌    [ 19] Corrèze
+      URL : https://www.correze.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.correze.gouv.fr', port=443): Max retries exceeded ConnectionError: HTTPSConnectionPool(host='www.correze.gouv.fr', port=443): Max retries exceeded 
+
+❌    [ 2A] Corse-du-Sud
+      URL : https://www.corse-du-sud.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.corse-du-sud.gouv.fr', port=443): Max retries exceConnectionError: HTTPSConnectionPool(host='www.corse-du-sud.gouv.fr', port=443): Max retries exce
+
+❌    [ 23] Creuse
+      URL : https://www.creuse.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.creuse.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.creuse.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 21] Côte-d'Or
+      URL : https://www.cote-dor.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.cote-dor.gouv.fr', port=443): Max retries exceededConnectionError: HTTPSConnectionPool(host='www.cote-dor.gouv.fr', port=443): Max retries exceeded
+
+❌    [ 22] Côtes-d'Armor
+      URL : https://www.cotes-darmor.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.cotes-darmor.gouv.fr', port=443): Max retries exceConnectionError: HTTPSConnectionPool(host='www.cotes-darmor.gouv.fr', port=443): Max retries exce
+
+❌    [ 79] Deux-Sèvres
+      URL : https://www.deux-sevres.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.deux-sevres.gouv.fr', port=443): Max retries exceeConnectionError: HTTPSConnectionPool(host='www.deux-sevres.gouv.fr', port=443): Max retries excee
+
+❌    [ 24] Dordogne
+      URL : https://www.dordogne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.dordogne.gouv.fr', port=443): Max retries exceededConnectionError: HTTPSConnectionPool(host='www.dordogne.gouv.fr', port=443): Max retries exceeded
+
+❌    [ 25] Doubs
+      URL : https://www.doubs.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.doubs.gouv.fr', port=443): Max retries exceeded wiConnectionError: HTTPSConnectionPool(host='www.doubs.gouv.fr', port=443): Max retries exceeded wi
+
+❌    [ 26] Drôme
+      URL : https://www.drome.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.drome.gouv.fr', port=443): Max retries exceeded wiConnectionError: HTTPSConnectionPool(host='www.drome.gouv.fr', port=443): Max retries exceeded wi
+
+❌    [ 91] Essonne
+      URL : https://www.essonne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.essonne.gouv.fr', port=443): Max retries exceeded ConnectionError: HTTPSConnectionPool(host='www.essonne.gouv.fr', port=443): Max retries exceeded 
+
+❌    [ 27] Eure
+      URL : https://www.eure.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.eure.gouv.fr', port=443): Max retries exceeded witConnectionError: HTTPSConnectionPool(host='www.eure.gouv.fr', port=443): Max retries exceeded wit
+
+❌    [ 28] Eure-et-Loir
+      URL : https://www.eure-et-loir.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.eure-et-loir.gouv.fr', port=443): Max retries exceConnectionError: HTTPSConnectionPool(host='www.eure-et-loir.gouv.fr', port=443): Max retries exce
+
+❌    [ 29] Finistère
+      URL : https://www.finistere.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.finistere.gouv.fr', port=443): Max retries exceedeConnectionError: HTTPSConnectionPool(host='www.finistere.gouv.fr', port=443): Max retries exceede
+
+❌    [ 30] Gard
+      URL : https://www.gard.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.gard.gouv.fr', port=443): Max retries exceeded witConnectionError: HTTPSConnectionPool(host='www.gard.gouv.fr', port=443): Max retries exceeded wit
+
+❌    [ 32] Gers
+      URL : https://www.gers.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.gers.gouv.fr', port=443): Max retries exceeded witConnectionError: HTTPSConnectionPool(host='www.gers.gouv.fr', port=443): Max retries exceeded wit
+
+❌    [ 33] Gironde
+      URL : https://www.gironde.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.gironde.gouv.fr', port=443): Max retries exceeded ConnectionError: HTTPSConnectionPool(host='www.gironde.gouv.fr', port=443): Max retries exceeded 
+
+❌    [ 68] Haut-Rhin
+      URL : https://www.haut-rhin.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.haut-rhin.gouv.fr', port=443): Max retries exceedeConnectionError: HTTPSConnectionPool(host='www.haut-rhin.gouv.fr', port=443): Max retries exceede
+
+❌    [ 2B] Haute-Corse
+      URL : https://www.haute-corse.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.haute-corse.gouv.fr', port=443): Max retries exceeConnectionError: HTTPSConnectionPool(host='www.haute-corse.gouv.fr', port=443): Max retries excee
+
+❌    [ 31] Haute-Garonne
+      URL : https://www.haute-garonne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.haute-garonne.gouv.fr', port=443): Max retries excConnectionError: HTTPSConnectionPool(host='www.haute-garonne.gouv.fr', port=443): Max retries exc
+
+❌    [ 43] Haute-Loire
+      URL : https://www.haute-loire.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.haute-loire.gouv.fr', port=443): Max retries exceeConnectionError: HTTPSConnectionPool(host='www.haute-loire.gouv.fr', port=443): Max retries excee
+
+❌    [ 52] Haute-Marne
+      URL : https://www.haute-marne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.haute-marne.gouv.fr', port=443): Max retries exceeConnectionError: HTTPSConnectionPool(host='www.haute-marne.gouv.fr', port=443): Max retries excee
+
+❌    [ 74] Haute-Savoie
+      URL : https://www.haute-savoie.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.haute-savoie.gouv.fr', port=443): Max retries exceConnectionError: HTTPSConnectionPool(host='www.haute-savoie.gouv.fr', port=443): Max retries exce
+
+❌    [ 70] Haute-Saône
+      URL : https://www.haute-saone.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.haute-saone.gouv.fr', port=443): Max retries exceeConnectionError: HTTPSConnectionPool(host='www.haute-saone.gouv.fr', port=443): Max retries excee
+
+❌    [ 87] Haute-Vienne
+      URL : https://www.haute-vienne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.haute-vienne.gouv.fr', port=443): Max retries exceConnectionError: HTTPSConnectionPool(host='www.haute-vienne.gouv.fr', port=443): Max retries exce
+
+❌    [ 05] Hautes-Alpes
+      URL : https://www.hautes-alpes.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.hautes-alpes.gouv.fr', port=443): Max retries exceConnectionError: HTTPSConnectionPool(host='www.hautes-alpes.gouv.fr', port=443): Max retries exce
+
+❌    [ 65] Hautes-Pyrénées
+      URL : https://www.hautes-pyrenees.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.hautes-pyrenees.gouv.fr', port=443): Max retries eConnectionError: HTTPSConnectionPool(host='www.hautes-pyrenees.gouv.fr', port=443): Max retries e
+
+❌    [ 92] Hauts-de-Seine
+      URL : https://www.hauts-de-seine.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.hauts-de-seine.gouv.fr', port=443): Max retries exConnectionError: HTTPSConnectionPool(host='www.hauts-de-seine.gouv.fr', port=443): Max retries ex
+
+❌    [ 34] Hérault
+      URL : https://www.herault.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.herault.gouv.fr', port=443): Max retries exceeded ConnectionError: HTTPSConnectionPool(host='www.herault.gouv.fr', port=443): Max retries exceeded 
+
+❌    [ 35] Ille-et-Vilaine
+      URL : https://www.ille-et-vilaine.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.ille-et-vilaine.gouv.fr', port=443): Max retries eConnectionError: HTTPSConnectionPool(host='www.ille-et-vilaine.gouv.fr', port=443): Max retries e
+
+❌    [ 36] Indre
+      URL : https://www.indre.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.indre.gouv.fr', port=443): Max retries exceeded wiConnectionError: HTTPSConnectionPool(host='www.indre.gouv.fr', port=443): Max retries exceeded wi
+
+❌    [ 37] Indre-et-Loire
+      URL : https://www.indre-et-loire.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.indre-et-loire.gouv.fr', port=443): Max retries exConnectionError: HTTPSConnectionPool(host='www.indre-et-loire.gouv.fr', port=443): Max retries ex
+
+❌    [ 38] Isère
+      URL : https://www.isere.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.isere.gouv.fr', port=443): Max retries exceeded wiConnectionError: HTTPSConnectionPool(host='www.isere.gouv.fr', port=443): Max retries exceeded wi
+
+❌    [ 39] Jura
+      URL : https://www.jura.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.jura.gouv.fr', port=443): Max retries exceeded witConnectionError: HTTPSConnectionPool(host='www.jura.gouv.fr', port=443): Max retries exceeded wit
+
+❌    [ 40] Landes
+      URL : https://www.landes.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.landes.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.landes.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 41] Loir-et-Cher
+      URL : https://www.loir-et-cher.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.loir-et-cher.gouv.fr', port=443): Max retries exceConnectionError: HTTPSConnectionPool(host='www.loir-et-cher.gouv.fr', port=443): Max retries exce
+
+❌    [ 42] Loire
+      URL : https://www.loire.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.loire.gouv.fr', port=443): Max retries exceeded wiConnectionError: HTTPSConnectionPool(host='www.loire.gouv.fr', port=443): Max retries exceeded wi
+
+❌    [ 44] Loire-Atlantique
+      URL : https://www.loire-atlantique.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.loire-atlantique.gouv.fr', port=443): Max retries ConnectionError: HTTPSConnectionPool(host='www.loire-atlantique.gouv.fr', port=443): Max retries 
+
+❌    [ 45] Loiret
+      URL : https://www.loiret.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.loiret.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.loiret.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 46] Lot
+      URL : https://www.lot.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.lot.gouv.fr', port=443): Max retries exceeded withConnectionError: HTTPSConnectionPool(host='www.lot.gouv.fr', port=443): Max retries exceeded with
+
+❌    [ 47] Lot-et-Garonne
+      URL : https://www.lot-et-garonne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.lot-et-garonne.gouv.fr', port=443): Max retries exConnectionError: HTTPSConnectionPool(host='www.lot-et-garonne.gouv.fr', port=443): Max retries ex
+
+❌    [ 48] Lozère
+      URL : https://www.lozere.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.lozere.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.lozere.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 49] Maine-et-Loire
+      URL : https://www.maine-et-loire.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.maine-et-loire.gouv.fr', port=443): Max retries exConnectionError: HTTPSConnectionPool(host='www.maine-et-loire.gouv.fr', port=443): Max retries ex
+
+❌    [ 50] Manche
+      URL : https://www.manche.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.manche.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.manche.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 51] Marne
+      URL : https://www.marne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.marne.gouv.fr', port=443): Max retries exceeded wiConnectionError: HTTPSConnectionPool(host='www.marne.gouv.fr', port=443): Max retries exceeded wi
+
+❌    [ 53] Mayenne
+      URL : https://www.mayenne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.mayenne.gouv.fr', port=443): Max retries exceeded ConnectionError: HTTPSConnectionPool(host='www.mayenne.gouv.fr', port=443): Max retries exceeded 
+
+❌    [ 54] Meurthe-et-Moselle
+      URL : https://www.meurthe-et-moselle.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.meurthe-et-moselle.gouv.fr', port=443): Max retrieConnectionError: HTTPSConnectionPool(host='www.meurthe-et-moselle.gouv.fr', port=443): Max retrie
+
+❌    [ 55] Meuse
+      URL : https://www.meuse.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.meuse.gouv.fr', port=443): Max retries exceeded wiConnectionError: HTTPSConnectionPool(host='www.meuse.gouv.fr', port=443): Max retries exceeded wi
+
+❌    [ 56] Morbihan
+      URL : https://www.morbihan.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.morbihan.gouv.fr', port=443): Max retries exceededConnectionError: HTTPSConnectionPool(host='www.morbihan.gouv.fr', port=443): Max retries exceeded
+
+❌    [ 57] Moselle
+      URL : https://www.moselle.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.moselle.gouv.fr', port=443): Max retries exceeded ConnectionError: HTTPSConnectionPool(host='www.moselle.gouv.fr', port=443): Max retries exceeded 
+
+❌    [ 58] Nièvre
+      URL : https://www.nievre.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.nievre.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.nievre.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 59] Nord
+      URL : https://www.nord.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.nord.gouv.fr', port=443): Max retries exceeded witConnectionError: HTTPSConnectionPool(host='www.nord.gouv.fr', port=443): Max retries exceeded wit
+
+❌    [ 60] Oise
+      URL : https://www.oise.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.oise.gouv.fr', port=443): Max retries exceeded witConnectionError: HTTPSConnectionPool(host='www.oise.gouv.fr', port=443): Max retries exceeded wit
+
+❌    [ 61] Orne
+      URL : https://www.orne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.orne.gouv.fr', port=443): Max retries exceeded witConnectionError: HTTPSConnectionPool(host='www.orne.gouv.fr', port=443): Max retries exceeded wit
+
+❌    [ 75] Paris
+      URL : https://www.prefectures-regions.gouv.fr/ile-de-france
+      ℹ️  HTTP 403 (anti-bot)HTTP 403 (blocage anti-bot)
+
+❌    [ 62] Pas-de-Calais
+      URL : https://www.pas-de-calais.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.pas-de-calais.gouv.fr', port=443): Max retries excConnectionError: HTTPSConnectionPool(host='www.pas-de-calais.gouv.fr', port=443): Max retries exc
+
+❌    [ 63] Puy-de-Dôme
+      URL : https://www.puy-de-dome.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.puy-de-dome.gouv.fr', port=443): Max retries exceeConnectionError: HTTPSConnectionPool(host='www.puy-de-dome.gouv.fr', port=443): Max retries excee
+
+❌    [ 64] Pyrénées-Atlantiques
+      URL : https://www.pyrenees-atlantiques.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.pyrenees-atlantiques.gouv.fr', port=443): Max retrConnectionError: HTTPSConnectionPool(host='www.pyrenees-atlantiques.gouv.fr', port=443): Max retr
+
+❌    [ 66] Pyrénées-Orientales
+      URL : https://www.pyrenees-orientales.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.pyrenees-orientales.gouv.fr', port=443): Max retriConnectionError: HTTPSConnectionPool(host='www.pyrenees-orientales.gouv.fr', port=443): Max retri
+
+❌    [ 69] Rhône
+      URL : https://www.rhone.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.rhone.gouv.fr', port=443): Max retries exceeded wiConnectionError: HTTPSConnectionPool(host='www.rhone.gouv.fr', port=443): Max retries exceeded wi
+
+❌    [ 72] Sarthe
+      URL : https://www.sarthe.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.sarthe.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.sarthe.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 73] Savoie
+      URL : https://www.savoie.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.savoie.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.savoie.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 71] Saône-et-Loire
+      URL : https://www.saone-et-loire.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.saone-et-loire.gouv.fr', port=443): Max retries exConnectionError: HTTPSConnectionPool(host='www.saone-et-loire.gouv.fr', port=443): Max retries ex
+
+❌    [ 76] Seine-Maritime
+      URL : https://www.seine-maritime.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.seine-maritime.gouv.fr', port=443): Max retries exConnectionError: HTTPSConnectionPool(host='www.seine-maritime.gouv.fr', port=443): Max retries ex
+
+❌    [ 93] Seine-Saint-Denis
+      URL : https://www.seine-saint-denis.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.seine-saint-denis.gouv.fr', port=443): Max retriesConnectionError: HTTPSConnectionPool(host='www.seine-saint-denis.gouv.fr', port=443): Max retries
+
+❌    [ 77] Seine-et-Marne
+      URL : https://www.seine-et-marne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.seine-et-marne.gouv.fr', port=443): Max retries exConnectionError: HTTPSConnectionPool(host='www.seine-et-marne.gouv.fr', port=443): Max retries ex
+
+❌    [ 80] Somme
+      URL : https://www.somme.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.somme.gouv.fr', port=443): Max retries exceeded wiConnectionError: HTTPSConnectionPool(host='www.somme.gouv.fr', port=443): Max retries exceeded wi
+
+❌    [ 81] Tarn
+      URL : https://www.tarn.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.tarn.gouv.fr', port=443): Max retries exceeded witConnectionError: HTTPSConnectionPool(host='www.tarn.gouv.fr', port=443): Max retries exceeded wit
+
+❌    [ 82] Tarn-et-Garonne
+      URL : https://www.tarn-et-garonne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.tarn-et-garonne.gouv.fr', port=443): Max retries eConnectionError: HTTPSConnectionPool(host='www.tarn-et-garonne.gouv.fr', port=443): Max retries e
+
+❌    [ 90] Territoire de Belfort
+      URL : https://www.territoire-de-belfort.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.territoire-de-belfort.gouv.fr', port=443): Max retConnectionError: HTTPSConnectionPool(host='www.territoire-de-belfort.gouv.fr', port=443): Max ret
+
+❌    [ 95] Val-d'Oise
+      URL : https://www.val-doise.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.val-doise.gouv.fr', port=443): Max retries exceedeConnectionError: HTTPSConnectionPool(host='www.val-doise.gouv.fr', port=443): Max retries exceede
+
+❌    [ 94] Val-de-Marne
+      URL : https://www.val-de-marne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.val-de-marne.gouv.fr', port=443): Max retries exceConnectionError: HTTPSConnectionPool(host='www.val-de-marne.gouv.fr', port=443): Max retries exce
+
+❌    [ 83] Var
+      URL : https://www.var.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.var.gouv.fr', port=443): Max retries exceeded withConnectionError: HTTPSConnectionPool(host='www.var.gouv.fr', port=443): Max retries exceeded with
+
+❌    [ 84] Vaucluse
+      URL : https://www.vaucluse.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.vaucluse.gouv.fr', port=443): Max retries exceededConnectionError: HTTPSConnectionPool(host='www.vaucluse.gouv.fr', port=443): Max retries exceeded
+
+❌    [ 85] Vendée
+      URL : https://www.vendee.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.vendee.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.vendee.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 86] Vienne
+      URL : https://www.vienne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.vienne.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.vienne.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 88] Vosges
+      URL : https://www.vosges.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.vosges.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.vosges.gouv.fr', port=443): Max retries exceeded w
+
+❌    [ 89] Yonne
+      URL : https://www.yonne.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.yonne.gouv.fr', port=443): Max retries exceeded wiConnectionError: HTTPSConnectionPool(host='www.yonne.gouv.fr', port=443): Max retries exceeded wi
+
+❌    [ 78] Yvelines
+      URL : https://www.yvelines.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.yvelines.gouv.fr', port=443): Max retries exceededConnectionError: HTTPSConnectionPool(host='www.yvelines.gouv.fr', port=443): Max retries exceeded
+
+
+──────────────────────────────────────────────────────────────────────
+OUTRE_MER
+──────────────────────────────────────────────────────────────────────
+
+❌    [971] Guadeloupe
+      URL : https://www.guadeloupe.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.guadeloupe.gouv.fr', port=443): Max retries exceedConnectionError: HTTPSConnectionPool(host='www.guadeloupe.gouv.fr', port=443): Max retries exceed
+
+❌    [973] Guyane
+      URL : https://www.guyane.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.guyane.gouv.fr', port=443): Max retries exceeded wConnectionError: HTTPSConnectionPool(host='www.guyane.gouv.fr', port=443): Max retries exceeded w
+
+❌    [974] La Réunion
+      URL : https://www.reunion.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.reunion.gouv.fr', port=443): Max retries exceeded ConnectionError: HTTPSConnectionPool(host='www.reunion.gouv.fr', port=443): Max retries exceeded 
+
+❌    [972] Martinique
+      URL : https://www.martinique.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.martinique.gouv.fr', port=443): Max retries exceedConnectionError: HTTPSConnectionPool(host='www.martinique.gouv.fr', port=443): Max retries exceed
+
+❌    [976] Mayotte
+      URL : https://www.mayotte.gouv.fr
+      ℹ️  Racine KO: ConnectionError: HTTPSConnectionPool(host='www.mayotte.gouv.fr', port=443): Max retries exceeded ConnectionError: HTTPSConnectionPool(host='www.mayotte.gouv.fr', port=443): Max retries exceeded 
+

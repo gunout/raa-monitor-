@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🇫🇷 RAA Monitor — Recueils des Actes Administratifs</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr@1.11.2/dist/dsfr.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue-france:#000091;--blue-france-hi:#1212ff;--blue-france-soft:#e3e3fd;
+  --red-marianne:#E1000F;--red-marianne-soft:#ffe9e9;--white:#fff;
+  --grey-50:#f6f6f6;--grey-100:#eee;--grey-200:#e5e5e5;--grey-500:#929292;
+  --grey-700:#3a3a3a;--grey-900:#1e1e1e;
+  --green-bourgeon:#18753c;--green-emeraude:#00a95f;--yellow-tournesol:#ffb800;
+  --violet:#6e4b9e;--violet-soft:#eee4f7;
+  --font-mono:'SF Mono',Menlo,Consolas,'Courier New',monospace;
+  --font-sans:'Marianne','system-ui',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+html,body{height:100%}
+body{font-family:var(--font-sans);background:var(--grey-50);color:var(--grey-900);
+  font-size:13px;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--grey-100)}
+::-webkit-scrollbar-thumb{background:var(--grey-500);border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:var(--blue-france)}
+
+.marianne-band{height:6px;background:linear-gradient(to right,
+  var(--blue-france) 0%,var(--blue-france) 33.33%,var(--white) 33.33%,var(--white) 66.66%,
+  var(--red-marianne) 66.66%,var(--red-marianne) 100%)}
+.bloc-marque{display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--white);border-bottom:1px solid var(--grey-200)}
+.bloc-marque-logo{font-weight:700;font-size:13px;color:var(--grey-900);letter-spacing:.3px;
+  text-transform:uppercase;border-right:1px solid var(--grey-200);padding-right:12px}
+.bloc-marque-devise em{display:block;font-style:normal;text-transform:uppercase;
+  letter-spacing:1.2px;font-size:9px;color:var(--grey-500)}
+
+.topbar{background:var(--white);border-bottom:1px solid var(--grey-200);display:flex;align-items:center;
+  padding:10px 16px;gap:12px;position:sticky;top:6px;z-index:100;flex-wrap:wrap}
+.brand{font-size:14px;font-weight:700;color:var(--blue-france);display:flex;align-items:center;gap:8px;white-space:nowrap}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--yellow-tournesol);
+  box-shadow:0 0 0 3px rgba(255,184,0,.25);animation:pulse 1.8s infinite;flex-shrink:0}
+.brand .dot.ready{background:var(--green-emeraude);box-shadow:0 0 0 3px rgba(0,169,95,.2);animation:none}
+.brand .dot.offline{background:var(--red-marianne);box-shadow:0 0 0 3px rgba(225,0,15,.2);animation:none}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.brand .sub{color:var(--grey-500);font-weight:400;font-size:12px;font-family:var(--font-mono)}
+
+.topbar-right{margin-left:auto;display:flex;gap:14px;font-family:var(--font-mono);font-size:11px;
+  align-items:center;flex-wrap:wrap}
+.topbar-stat{display:flex;gap:5px;color:var(--grey-700);align-items:center}
+.topbar-stat .val{color:var(--blue-france);font-weight:700;padding:2px 6px;border-radius:3px;background:var(--blue-france-soft)}
+.topbar-stat .val.green{color:var(--green-bourgeon);background:#b8fec9}
+.topbar-stat .val.amber{color:#8a5e00;background:#ffe9b8}
+.topbar-stat .val.red{color:var(--red-marianne);background:var(--red-marianne-soft)}
+
+.app{display:grid;grid-template-columns:280px 1fr 340px;height:calc(100vh - 130px);overflow:hidden}
+
+.sidebar{background:var(--white);border-right:1px solid var(--grey-200);display:flex;flex-direction:column;overflow:hidden}
+.sb-head{padding:14px 16px;border-bottom:1px solid var(--grey-200);background:var(--grey-50)}
+.sb-title{font-size:12px;font-weight:700;color:var(--blue-france);letter-spacing:.5px;
+  text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.sb-title::before{content:'';width:4px;height:14px;background:var(--red-marianne)}
+.sb-count{font-family:var(--font-mono);font-size:11px;color:var(--grey-500);margin-top:6px}
+.sb-search{padding:10px 14px;border-bottom:1px solid var(--grey-200)}
+.sb-search input{width:100%;background:var(--white);border:1px solid var(--grey-200);
+  border-radius:4px;color:var(--grey-900);padding:9px 12px;font-size:13px}
+.sb-search input:focus{outline:none;border-color:var(--blue-france);box-shadow:0 0 0 2px var(--blue-france-soft)}
+.sb-list{flex:1;overflow-y:auto;padding:8px}
+
+.source-item{background:var(--white);border:1px solid var(--grey-200);border-left:4px solid var(--blue-france);
+  border-radius:4px;padding:10px 12px;margin-bottom:6px;cursor:pointer;transition:.15s}
+.source-item:hover{border-color:var(--blue-france);background:var(--blue-france-soft)}
+.source-item.active{background:var(--blue-france-soft);border-left-color:var(--red-marianne)}
+.source-item.active .source-item-name{color:var(--blue-france)}
+.source-item-h{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.source-item-icon{font-size:16px}
+.source-item-name{font-size:12px;font-weight:700;color:var(--grey-900);flex:1;line-height:1.3}
+.source-item-meta{display:flex;gap:8px;font-family:var(--font-mono);font-size:10px;color:var(--grey-500);margin-top:4px;flex-wrap:wrap}
+.source-item-count{background:var(--grey-100);padding:2px 6px;border-radius:3px;color:var(--grey-700);font-weight:600}
+
+.source-item[data-type="recueil"]{border-left-color:var(--blue-france)}
+.source-item[data-type="arrete"]{border-left-color:var(--yellow-tournesol)}
+.source-item[data-type="decision"]{border-left-color:var(--violet)}
+.source-item[data-type="special"]{border-left-color:var(--red-marianne)}
+.source-item[data-type="nominatif"]{border-left-color:var(--green-emeraude)}
+.source-item[data-type="autre"]{border-left-color:var(--grey-500)}
+
+.center{background:var(--grey-50);display:flex;flex-direction:column;overflow:hidden}
+.search-bar{padding:14px 16px;background:var(--white);border-bottom:1px solid var(--grey-200);
+  display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.search-bar input[type=text]{flex:1;min-width:220px;border:1px solid var(--grey-200);
+  border-radius:4px;padding:11px 14px;font-size:14px}
+.search-bar input[type=text]:focus{outline:none;border-color:var(--blue-france);box-shadow:0 0 0 2px var(--blue-france-soft)}
+.search-bar select{border:1px solid var(--grey-200);border-radius:4px;padding:11px 12px;font-size:13px;
+  background:var(--white);cursor:pointer;max-width:230px}
+.search-bar select:focus{outline:none;border-color:var(--blue-france)}
+.search-btn{background:var(--blue-france);color:var(--white);border:1px solid var(--blue-france);
+  font-size:13px;font-weight:700;padding:11px 20px;border-radius:4px;cursor:pointer;transition:.15s}
+.search-btn:hover{background:var(--blue-france-hi)}
+
+.pagination-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 14px;
+  background:var(--white);border-top:1px solid var(--grey-200);border-bottom:1px solid var(--grey-200)}
+.pagination-info{font-family:var(--font-mono);font-size:11px;color:var(--grey-700);font-weight:600}
+.pagination-info strong{color:var(--blue-france)}
+.pagination-spacer{flex:1}
+.page-btn{background:var(--white);color:var(--grey-900);border:1px solid var(--grey-200);font-size:12px;
+  font-weight:600;padding:6px 12px;border-radius:4px;cursor:pointer;min-width:36px}
+.page-btn:hover:not(:disabled){border-color:var(--blue-france);color:var(--blue-france);background:var(--blue-france-soft)}
+.page-btn:disabled{opacity:.4;cursor:not-allowed}
+.page-input{width:60px;text-align:center;padding:6px 8px;font-size:12px;font-family:var(--font-mono);
+  font-weight:700;border:1px solid var(--grey-200);border-radius:4px;color:var(--blue-france)}
+.page-select{border:1px solid var(--grey-200);border-radius:4px;padding:6px 8px;font-size:12px}
+
+.results{flex:1;overflow-y:auto;padding:14px}
+
+.result-card{background:var(--white);border:1px solid var(--grey-200);border-left:4px solid var(--blue-france);
+  border-radius:4px;padding:14px 16px;margin-bottom:10px;transition:.15s}
+.result-card:hover{border-color:var(--blue-france);box-shadow:0 4px 12px rgba(0,0,145,.08);transform:translateX(2px)}
+.result-card.type-recuum,
+.result-card.type-recuum{}
+/* Types visuels */
+.result-card.type-recuum{border-left-color:var(--blue-france)}
+.result-card.type-arrete{border-left-color:var(--yellow-tournesol)}
+.result-card.type-decision{border-left-color:var(--violet)}
+.result-card.type-special{border-left-color:var(--red-marianne)}
+.result-card.type-nominatif{border-left-color:var(--green-emeraude)}
+.result-card.type-autre{border-left-color:var(--grey-500)}
+
+.rc-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.rc-title{font-size:14px;font-weight:700;color:var(--grey-900);flex:1;line-height:1.35;min-width:200px;word-break:break-word}
+.rc-badges{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.rc-badge{font-family:var(--font-mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:3px;
+  text-transform:uppercase;white-space:nowrap;letter-spacing:.5px}
+.rc-badge.type-recuum{background:var(--blue-france-soft);color:var(--blue-france)}
+.rc-badge.type-arrete{background:#ffe9b8;color:#8a5e00}
+.rc-badge.type-decision{background:var(--violet-soft);color:var(--violet)}
+.rc-badge.type-special{background:var(--red-marianne);color:var(--white)}
+.rc-badge.type-nominatif{background:#b8fec9;color:#0d5726}
+.rc-badge.type-autre{background:var(--grey-100);color:var(--grey-700)}
+.rc-badge.dep{background:var(--grey-100);color:var(--grey-900);border:1px solid var(--grey-200)}
+.rc-badge.pref{background:var(--blue-france);color:var(--white)}
+.rc-badge.region{background:var(--yellow-tournesol);color:var(--grey-900)}
+.rc-badge.annee{background:var(--grey-100);color:var(--grey-700)}
+.rc-org{color:var(--grey-700);font-weight:600;font-size:12px;margin-bottom:6px;line-height:1.4}
+.rc-org .pref-name{color:var(--blue-france);font-weight:700}
+.rc-meta{display:flex;gap:6px;font-family:var(--font-mono);font-size:10px;color:var(--grey-500);flex-wrap:wrap;margin-top:8px}
+.rc-meta .tag{background:var(--grey-50);padding:3px 8px;border-radius:3px;border:1px solid var(--grey-200);color:var(--grey-700)}
+.rc-actions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+
+.btn{padding:6px 12px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;
+  border:1px solid;transition:.15s;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+.btn.primary{background:var(--blue-france);color:var(--white);border-color:var(--blue-france)}
+.btn.primary:hover{background:var(--blue-france-hi)}
+.btn.secondary{background:var(--white);color:var(--blue-france);border-color:var(--blue-france)}
+.btn.secondary:hover{background:var(--blue-france-soft)}
+.btn.ghost{background:var(--white);color:var(--grey-700);border-color:var(--grey-200)}
+.btn.ghost:hover{background:var(--grey-50);border-color:var(--grey-500)}
+
+.right{background:var(--white);border-left:1px solid var(--grey-200);display:flex;flex-direction:column;overflow:hidden}
+.rs-head{padding:14px 16px;border-bottom:1px solid var(--grey-200);background:var(--grey-50);
+  font-size:12px;font-weight:700;color:var(--blue-france);letter-spacing:.5px;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px}
+.rs-head::before{content:'';width:4px;height:14px;background:var(--red-marianne)}
+.rs-body{flex:1;overflow-y:auto;padding:12px}
+
+.intel-panel{background:var(--white);border:1px solid var(--grey-200);border-radius:4px;margin-bottom:10px;overflow:hidden}
+.intel-head{padding:9px 12px;background:var(--grey-50);border-bottom:1px solid var(--grey-200);
+  font-size:11px;font-weight:700;color:var(--blue-france);letter-spacing:.5px;text-transform:uppercase}
+.intel-body{padding:10px}
+.info-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--grey-100);font-size:12px}
+.info-row:last-child{border-bottom:none}
+.info-row .k{color:var(--grey-700)}
+.info-row .v{font-family:var(--font-mono);font-weight:700;color:var(--grey-900);text-align:right;max-width:60%}
+
+.bar-chart{display:flex;flex-direction:column;gap:6px}
+.bar-row{display:flex;align-items:center;gap:6px;font-size:11px}
+.bar-label{width:70px;font-family:var(--font-mono);font-weight:700;color:var(--grey-700);flex-shrink:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-track{flex:1;height:16px;background:var(--grey-100);border-radius:2px;overflow:hidden;position:relative}
+.bar-fill{height:100%;background:var(--blue-france);transition:width .3s}
+.bar-fill.type-recuum{background:var(--blue-france)}
+.bar-fill.type-arrete{background:var(--yellow-tournesol)}
+.bar-fill.type-decision{background:var(--violet)}
+.bar-fill.type-special{background:var(--red-marianne)}
+.bar-fill.type-nominatif{background:var(--green-emeraude)}
+.bar-fill.type-autre{background:var(--grey-500)}
+.bar-value{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--grey-700);flex-shrink:0;min-width:40px;text-align:right}
+
+.toast{position:fixed;bottom:20px;right:20px;background:var(--blue-france);color:var(--white);
+  padding:12px 18px;border-radius:6px;font-size:13px;font-weight:600;
+  box-shadow:0 8px 24px rgba(0,0,145,.25);z-index:10000;animation:slideIn .3s ease-out}
+.toast.success{background:var(--green-emeraude)}
+.toast.error{background:var(--red-marianne)}
+@keyframes slideIn{from{transform:translateX(400px);opacity:0}to{transform:translateX(0);opacity:1}}
+
+.empty,.loading-state{text-align:center;padding:60px 20px;color:var(--grey-500);font-size:14px}
+.spin{width:40px;height:40px;border:3px solid var(--grey-200);border-top-color:var(--blue-france);
+  border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 14px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.error-box{background:var(--red-marianne-soft);border:1px solid var(--red-marianne);border-left-width:4px;
+  color:var(--red-marianne);padding:14px;border-radius:4px;font-size:12px;margin-top:8px}
+
+@media (max-width:1100px){
+  .app{grid-template-columns:1fr;height:auto;overflow:visible}
+  .sidebar,.right{max-height:400px}
+}
+</style>
+</head>
+<body>
+
+<div class="marianne-band"></div>
+<div class="bloc-marque">
+  <div class="bloc-marque-logo">République<br>Française</div>
+  <div class="bloc-marque-devise"><em>Liberté</em><em>Égalité</em><em>Fraternité</em></div>
+</div>
+
+<div class="topbar">
+  <div class="brand">
+    <span class="dot" id="statusDot"></span>
+    RAA MONITOR
+    <span class="sub">/ recueils des actes administratifs</span>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-stat"><span>DATA</span><span class="val green" id="tbStatus">—</span></div>
+    <div class="topbar-stat"><span>DOCS</span><span class="val" id="tbTotal">—</span></div>
+    <div class="topbar-stat"><span>PRÉFECTURES</span><span class="val" id="tbPrefs">—</span></div>
+    <div class="topbar-stat"><span>AFFICHÉS</span><span class="val amber" id="tbShown">—</span></div>
+  </div>
+</div>
+
+<div class="app">
+  <aside class="sidebar">
+    <div class="sb-head">
+      <div class="sb-title">🏛️ Préfectures & Types</div>
+      <div class="sb-count" id="sbCount">—</div>
+    </div>
+    <div class="sb-search">
+      <input type="text" id="sourceSearch" placeholder="🔍 Filtrer préfecture…">
+    </div>
+    <div class="sb-list" id="sbList"></div>
+  </aside>
+
+  <main class="center">
+    <div class="search-bar">
+      <input type="text" id="queryInput" placeholder="🔍 Rechercher titre, n°, préfecture…">
+      <select id="prefSelect">
+        <option value="">🏛️ Toutes préfectures</option>
+      </select>
+      <select id="depSelect">
+        <option value="">📍 Tous départements</option>
+      </select>
+      <select id="typeSelect">
+        <option value="">🎯 Tous types</option>
+        <option value="recueil">📋 Recueils</option>
+        <option value="arrete">📜 Arrêtés</option>
+        <option value="decision">⚖️ Décisions</option>
+        <option value="special">⚡ Spéciaux</option>
+        <option value="nominatif">👤 Nominatifs</option>
+        <option value="autre">📁 Autres</option>
+      </select>
+      <select id="anneeSelect">
+        <option value="">📅 Toutes années</option>
+      </select>
+      <select id="sortSelect">
+        <option value="recent">📅 Plus récents</option>
+        <option value="old">📅 Plus anciens</option>
+        <option value="pref">🏛️ Préfecture A→Z</option>
+        <option value="dep_code">🔢 N° département</option>
+        <option value="title">🔤 Titre A→Z</option>
+      </select>
+      <button class="search-btn" id="searchBtn">▶ RECHERCHER</button>
+    </div>
+
+    <div class="pagination-bar" id="paginationBar" hidden>
+      <span class="pagination-info" id="paginationInfo">—</span>
+      <span class="pagination-spacer"></span>
+      <button class="page-btn" id="pageFirst">⏮</button>
+      <button class="page-btn" id="pagePrev">←</button>
+      <input type="number" class="page-input" id="pageInput" min="1" value="1">
+      <span style="font-size:12px;color:var(--grey-500)" id="pageTotal">/ —</span>
+      <button class="page-btn" id="pageNext">→</button>
+      <button class="page-btn" id="pageLast">⏭</button>
+      <select class="page-select" id="pageSizeSelect">
+        <option value="25" selected>25 / page</option>
+        <option value="50">50 / page</option>
+        <option value="100">100 / page</option>
+      </select>
+    </div>
+
+    <div class="results" id="resultsArea">
+      <div class="loading-state"><div class="spin"></div>Chargement de raa.json…</div>
+    </div>
+  </main>
+
+  <aside class="right">
+    <div class="rs-head">Statistiques</div>
+    <div class="rs-body">
+      <div class="intel-panel">
+        <div class="intel-head">💚 ÉTAT GLOBAL</div>
+        <div class="intel-body">
+          <div class="info-row"><span class="k">Total documents</span><span class="v" id="ivTotal">—</span></div>
+          <div class="info-row"><span class="k">Préfectures</span><span class="v" id="ivPrefs">—</span></div>
+          <div class="info-row"><span class="k">Départements</span><span class="v" id="ivDeps">—</span></div>
+          <div class="info-row"><span class="k">Régions</span><span class="v" id="ivRegions">—</span></div>
+          <div class="info-row"><span class="k">Années</span><span class="v" id="ivAnnees">—</span></div>
+        </div>
+      </div>
+
+      <div class="intel-panel">
+        <div class="intel-head">📂 RÉPARTITION PAR TYPE</div>
+        <div class="intel-body">
+          <div class="info-row"><span class="k">📋 Recueils</span><span class="v" id="ivRecueil">—</span></div>
+          <div class="info-row"><span class="k">📜 Arrêtés</span><span class="v" id="ivArrete">—</span></div>
+          <div class="info-row"><span class="k">⚖️ Décisions</span><span class="v" id="ivDecision">—</span></div>
+          <div class="info-row"><span class="k">⚡ Spéciaux</span><span class="v" id="ivSpecial">—</span></div>
+          <div class="info-row"><span class="k">👤 Nominatifs</span><span class="v" id="ivNominatif">—</span></div>
+          <div class="info-row"><span class="k">📁 Autres</span><span class="v" id="ivAutre">—</span></div>
+        </div>
+      </div>
+
+      <div class="intel-panel">
+        <div class="intel-head">📊 GRAPHIQUE</div>
+        <div class="intel-body">
+          <div class="bar-chart" id="typeChart"></div>
+        </div>
+      </div>
+
+      <div class="intel-panel">
+        <div class="intel-head">🏆 TOP 10 PRÉFECTURES</div>
+        <div class="intel-body">
+          <div class="bar-chart" id="topPrefs"></div>
+        </div>
+      </div>
+
+      <div class="intel-panel">
+        <div class="intel-head">⚡ ACTIONS</div>
+        <div class="intel-body">
+          <button class="btn primary" id="exportCsv" style="width:100%;justify-content:center;margin-bottom:6px">
+            📥 Export CSV résultats
+          </button>
+          <button class="btn secondary" id="copyLinks" style="width:100%;justify-content:center;margin-bottom:6px">
+            📋 Copier les URLs
+          </button>
+          <button class="btn ghost" id="resetFilters" style="width:100%;justify-content:center">
+            🔄 Réinitialiser filtres
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+// ============================================================
+// TABLE DES PRÉFECTURES (chef-lieu de département)
+// ============================================================
+const PREFECTURES = {
+  "01":"Bourg-en-Bresse","02":"Laon","03":"Moulins","04":"Digne-les-Bains",
+  "05":"Gap","06":"Nice","07":"Privas","08":"Charleville-Mézières",
+  "09":"Foix","10":"Troyes","11":"Carcassonne","12":"Rodez",
+  "13":"Marseille","14":"Caen","15":"Aurillac","16":"Angoulême",
+  "17":"La Rochelle","18":"Bourges","19":"Tulle",
+  "2A":"Ajaccio","2B":"Bastia",
+  "21":"Dijon","22":"Saint-Brieuc","23":"Guéret","24":"Périgueux",
+  "25":"Besançon","26":"Valence","27":"Évreux","28":"Chartres",
+  "29":"Quimper","30":"Nîmes","31":"Toulouse","32":"Auch",
+  "33":"Bordeaux","34":"Montpellier","35":"Rennes","36":"Châteauroux",
+  "37":"Tours","38":"Grenoble","39":"Lons-le-Saunier","40":"Mont-de-Marsan",
+  "41":"Blois","42":"Saint-Étienne","43":"Le Puy-en-Velay",
+  "44":"Nantes","45":"Orléans","46":"Cahors","47":"Agen",
+  "48":"Mende","49":"Angers","50":"Saint-Lô","51":"Châlons-en-Champagne",
+  "52":"Chaumont","53":"Laval","54":"Nancy","55":"Bar-le-Duc",
+  "56":"Vannes","57":"Metz","58":"Nevers","59":"Lille",
+  "60":"Beauvais","61":"Alençon","62":"Arras","63":"Clermont-Ferrand",
+  "64":"Pau","65":"Tarbes","66":"Perpignan","67":"Strasbourg",
+  "68":"Colmar","69":"Lyon","70":"Vesoul","71":"Mâcon",
+  "72":"Le Mans","73":"Chambéry","74":"Annecy","75":"Paris",
+  "76":"Rouen","77":"Melun","78":"Versailles","79":"Niort",
+  "80":"Amiens","81":"Albi","82":"Montauban","83":"Toulon",
+  "84":"Avignon","85":"La Roche-sur-Yon","86":"Poitiers",
+  "87":"Limoges","88":"Épinal","89":"Auxerre","90":"Belfort",
+  "91":"Évry-Courcouronnes","92":"Nanterre","93":"Bobigny",
+  "94":"Créteil","95":"Cergy","971":"Basse-Terre","972":"Fort-de-France",
+  "973":"Cayenne","974":"Saint-Denis","976":"Mamoudzou"
+};
+
+// ============================================================
+// CONFIG
+// ============================================================
+const DATA_URL = 'json/raa.json';
+const DEBOUNCE_MS = 150;
+
+const TYPE_META = {
+  recueil:   { icon:'📋', label:'Recueil',    color:'recueil' },
+  arrete:    { icon:'📜', label:'Arrêté',     color:'arrete' },
+  decision:  { icon:'⚖️', label:'Décision',   color:'decision' },
+  special:   { icon:'⚡', label:'Spécial',    color:'special' },
+  nominatif: { icon:'👤', label:'Nominatif',  color:'nominatif' },
+  autre:     { icon:'📁', label:'Autre',      color:'autre' }
+};
+
+const TYPE_ORDER = ['recueil','arrete','decision','special','nominatif','autre'];
+
+// ============================================================
+// ÉTAT
+// ============================================================
+const state = {
+  all: [],
+  filtered: [],
+  currentPage: 1,
+  pageSize: 25,
+  totalResults: 0,
+  activeType: null,
+  currentPageItems: []
+};
+
+// ============================================================
+// HELPERS
+// ============================================================
+function escapeHtml(s){
+  return String(s ?? '').replace(/[&<>"']/g, c =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function formatNumber(n){
+  if (n === null || n === undefined || isNaN(n)) return '—';
+  return Number(n).toLocaleString('fr-FR');
+}
+function formatDate(iso){
+  if (!iso) return '—';
+  try {
+    const d = new Date(iso);
+    if (isNaN(d)) return iso;
+    return d.toLocaleDateString('fr-FR', {day:'2-digit',month:'short',year:'numeric'});
+  } catch(e){ return iso; }
+}
+function parseDisplayDate(d){
+  if (!d) return '—';
+  const m = String(d).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!m) return d;
+  const [_, y, mo, dd] = m;
+  if (dd === '00') return `01/${mo}/${y}`;
+  return `${dd}/${mo}/${y}`;
+}
+function debounce(fn, ms){
+  let t;
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+}
+function showToast(msg, type = 'info'){
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity .3s'; }, 2500);
+  setTimeout(() => t.remove(), 3000);
+}
+async function copyText(txt){
+  try {
+    if (navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(txt);
+      return true;
+    }
+  } catch(e){ /* fallback */ }
+  // Fallback : textarea temporaire
+  try {
+    const ta = document.createElement('textarea');
+    ta.value = txt;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand('copy');
+    ta.remove();
+    return ok;
+  } catch(e){ return false; }
+}
+
+// ============================================================
+// CHARGEMENT
+// ============================================================
+async function loadData(){
+  const dot = document.getElementById('statusDot');
+  try {
+    const r = await fetch(DATA_URL, { cache: 'no-store' });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const json = await r.json();
+
+    let results;
+    if (Array.isArray(json)) results = json;
+    else if (json.results && Array.isArray(json.results)) results = json.results;
+    else if (json.data && Array.isArray(json.data)) results = json.data;
+    else throw new Error('Format invalide : "results" manquant');
+
+    results.forEach(d => {
+      d.prefecture = d.prefecture || PREFECTURES[d.departement] || '—';
+    });
+
+    state.all = results;
+    dot.classList.add('ready');
+
+    document.getElementById('tbStatus').textContent = 'OK';
+    document.getElementById('tbStatus').className = 'val green';
+    document.getElementById('tbTotal').textContent = formatNumber(results.length);
+
+    const prefs = new Set(results.map(d => d.prefecture).filter(p => p && p !== '—'));
+    const deps = new Set(results.map(d => d.departement));
+    const regions = new Set(results.map(d => d.region).filter(Boolean));
+    const annees = [...new Set(results.map(d => d.annee).filter(Boolean))].sort((a,b) => b-a);
+
+    const byType = { recueil:0, arrete:0, decision:0, special:0, nominatif:0, autre:0 };
+    results.forEach(d => { if (byType[d.type] !== undefined) byType[d.type]++; });
+
+    document.getElementById('tbPrefs').textContent = prefs.size;
+    document.getElementById('ivTotal').textContent = formatNumber(results.length);
+    document.getElementById('ivPrefs').textContent = prefs.size;
+    document.getElementById('ivDeps').textContent = deps.size;
+    document.getElementById('ivRegions').textContent = regions.size;
+    document.getElementById('ivAnnees').textContent = annees.length;
+    document.getElementById('ivRecueil').textContent   = formatNumber(byType.recueil);
+    document.getElementById('ivArrete').textContent    = formatNumber(byType.arrete);
+    document.getElementById('ivDecision').textContent  = formatNumber(byType.decision);
+    document.getElementById('ivSpecial').textContent   = formatNumber(byType.special);
+    document.getElementById('ivNominatif').textContent = formatNumber(byType.nominatif);
+    document.getElementById('ivAutre').textContent     = formatNumber(byType.autre);
+
+    renderTypeChart(byType);
+    renderTopPrefs(results);
+
+    populatePrefSelect(results);
+    populateDepSelect(results);
+    populateAnneeSelect(annees);
+    renderCategories();
+
+    runSearch(1);
+  } catch(err){
+    dot.classList.add('offline');
+    document.getElementById('tbStatus').textContent = 'ERREUR';
+    document.getElementById('tbStatus').className = 'val red';
+    document.getElementById('resultsArea').innerHTML = `
+      <div class="error-box">
+        <strong>❌ Impossible de charger ${DATA_URL}</strong><br><br>
+        Erreur : <code>${escapeHtml(err.message)}</code><br><br>
+        <strong>Solutions :</strong><br>
+        1. Vérifiez que <code>json/raa.json</code> est bien accessible (ouvrez
+           <a href="${DATA_URL}" target="_blank">${DATA_URL}</a> dans un onglet).<br>
+        2. Lancez un serveur local : <code>python3 -m http.server 8000</code> puis
+           <a href="http://localhost:8000/">http://localhost:8000/</a><br>
+        3. <strong>N'ouvrez pas le HTML en double-clic</strong> (<code>file://</code>) — le navigateur
+           bloquera le fetch du JSON.
+      </div>
+    `;
+  }
+}
+
+// ============================================================
+// SIDEBAR : TYPES + PRÉFECTURES
+// ============================================================
+function renderCategories(){
+  const search = (document.getElementById('sourceSearch').value || '').toLowerCase().trim();
+  const list = document.getElementById('sbList');
+
+  if (search.length > 0){
+    const prefs = {};
+    state.all.forEach(d => {
+      const p = d.prefecture || '—';
+      if (p.toLowerCase().includes(search) || d.departement.includes(search)){
+        prefs[p] = (prefs[p] || 0) + 1;
+      }
+    });
+    const entries = Object.entries(prefs).sort(([a],[b]) => a.localeCompare(b, 'fr'));
+    document.getElementById('sbCount').textContent = `${entries.length} préfecture(s) trouvée(s)`;
+    list.innerHTML = entries.map(([pref, n]) => {
+      const sample = state.all.find(d => d.prefecture === pref);
+      return `
+        <div class="source-item" data-pref="${escapeHtml(pref)}">
+          <div class="source-item-h">
+            <span class="source-item-icon">🏛️</span>
+            <span class="source-item-name">${escapeHtml(pref)}</span>
+          </div>
+          <div class="source-item-meta">
+            <span class="source-item-count">${n} docs</span>
+            <span>${escapeHtml(sample?.departement || '')}</span>
+          </div>
+        </div>
+      `;
+    }).join('') || '<div style="padding:20px;text-align:center;color:var(--grey-500)">Aucune préfecture</div>';
+
+    list.querySelectorAll('[data-pref]').forEach(el => {
+      el.addEventListener('click', () => {
+        document.getElementById('prefSelect').value = el.dataset.pref;
+        document.getElementById('sourceSearch').value = '';
+        runSearch(1);
+        renderCategories();
+      });
+    });
+    return;
+  }
+
+  const counts = { recueil:0, arrete:0, decision:0, special:0, nominatif:0, autre:0 };
+  state.all.forEach(d => { if (counts[d.type] !== undefined) counts[d.type]++; });
+
+  const prefCounts = {};
+  state.all.forEach(d => {
+    const p = d.prefecture || '—';
+    prefCounts[p] = (prefCounts[p] || 0) + 1;
+  });
+  const topPrefs = Object.entries(prefCounts).sort((a,b) => b[1]-a[1]).slice(0, 8);
+
+  document.getElementById('sbCount').textContent =
+    `${formatNumber(state.all.length)} documents · ${Object.keys(prefCounts).length} préfectures`;
+
+  list.innerHTML = `
+    <div style="font-family:var(--font-mono);font-size:10px;color:var(--grey-500);
+                padding:6px 4px;text-transform:uppercase;letter-spacing:.5px">Types</div>
+    ${TYPE_ORDER.map(id => {
+      const meta = TYPE_META[id];
+      return `
+        <div class="source-item ${state.activeType === id ? 'active' : ''}" data-type="${id}">
+          <div class="source-item-h">
+            <span class="source-item-icon">${meta.icon}</span>
+            <span class="source-item-name">${meta.label}</span>
+          </div>
+          <div class="source-item-meta">
+            <span class="source-item-count">${formatNumber(counts[id])}</span>
+            <span>${state.activeType === id ? '● ACTIF' : 'Cliquer'}</span>
+          </div>
+        </div>
+      `;
+    }).join('')}
+    <div style="font-family:var(--font-mono);font-size:10px;color:var(--grey-500);
+                padding:10px 4px 6px;text-transform:uppercase;letter-spacing:.5px">Top préfectures</div>
+    ${topPrefs.map(([pref, n]) => `
+      <div class="source-item" data-pref="${escapeHtml(pref)}" style="border-left-color:var(--yellow-tournesol)">
+        <div class="source-item-h">
+          <span class="source-item-icon">🏛️</span>
+          <span class="source-item-name">${escapeHtml(pref)}</span>
+        </div>
+        <div class="source-item-meta">
+          <span class="source-item-count">${formatNumber(n)}</span>
+          <span>docs</span>
+        </div>
+      </div>
+    `).join('')}
+  `;
+
+  list.querySelectorAll('[data-type]').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.type;
+      state.activeType = (state.activeType === id) ? null : id;
+      document.getElementById('typeSelect').value = state.activeType || '';
+      renderCategories();
+      runSearch(1);
+    });
+  });
+
+  list.querySelectorAll('[data-pref]').forEach(el => {
+    el.addEventListener('click', () => {
+      document.getElementById('prefSelect').value = el.dataset.pref;
+      runSearch(1);
+    });
+  });
+}
+
+// ============================================================
+// CHARTS
+// ============================================================
+function renderTypeChart(byType){
+  const el = document.getElementById('typeChart');
+  const entries = TYPE_ORDER.map(t => [t, byType[t] || 0]);
+  const max = Math.max(...entries.map(([,v]) => v), 1);
+  el.innerHTML = entries.map(([t, v]) => {
+    const meta = TYPE_META[t];
+    return `
+      <div class="bar-row">
+        <span class="bar-label">${meta.icon} ${meta.label}</span>
+        <div class="bar-track"><div class="bar-fill type-${t}" style="width:${(v/max*100)}%"></div></div>
+        <span class="bar-value">${formatNumber(v)}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderTopPrefs(results){
+  const counts = {};
+  results.forEach(d => {
+    const p = d.prefecture || '—';
+    counts[p] = (counts[p]||0)+1;
+  });
+  const top = Object.entries(counts).sort((a,b) => b[1]-a[1]).slice(0, 10);
+  const max = top.length ? top[0][1] : 1;
+  const el = document.getElementById('topPrefs');
+  el.innerHTML = top.map(([pref, n]) => `
+    <div class="bar-row">
+      <span class="bar-label" title="${escapeHtml(pref)}">${escapeHtml(pref)}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${(n/max*100)}%"></div></div>
+      <span class="bar-value">${formatNumber(n)}</span>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// SELECTEURS
+// ============================================================
+function populatePrefSelect(results){
+  const sel = document.getElementById('prefSelect');
+  const prefs = {};
+  results.forEach(d => {
+    const p = d.prefecture || '—';
+    if (!prefs[p]) prefs[p] = { count: 0, dep: d.departement };
+    prefs[p].count++;
+  });
+  const entries = Object.entries(prefs).sort(([a],[b]) => a.localeCompare(b, 'fr'));
+  sel.innerHTML = '<option value="">🏛️ Toutes préfectures</option>' +
+    entries.map(([p, info]) =>
+      `<option value="${escapeHtml(p)}">${escapeHtml(p)} (${escapeHtml(info.dep)}) — ${formatNumber(info.count)}</option>`
+    ).join('');
+}
+
+function populateDepSelect(results){
+  const sel = document.getElementById('depSelect');
+  const deps = {};
+  results.forEach(d => {
+    if (!deps[d.departement]) deps[d.departement] = { nom: d.nom_departement || d.departement, count: 0 };
+    deps[d.departement].count++;
+  });
+  const entries = Object.entries(deps).sort(([a],[b]) => a.localeCompare(b));
+  sel.innerHTML = '<option value="">📍 Tous départements</option>' +
+    entries.map(([dep, info]) =>
+      `<option value="${escapeHtml(dep)}">${escapeHtml(dep)} — ${escapeHtml(info.nom)} (${formatNumber(info.count)})</option>`
+    ).join('');
+}
+
+function populateAnneeSelect(annees){
+  const sel = document.getElementById('anneeSelect');
+  sel.innerHTML = '<option value="">📅 Toutes années</option>' +
+    annees.map(y => `<option value="${y}">${y}</option>`).join('');
+}
+
+// ============================================================
+// RECHERCHE
+// ============================================================
+function runSearch(page = 1){
+  const q = document.getElementById('queryInput').value.trim().toLowerCase();
+  const pref = document.getElementById('prefSelect').value;
+  const dep = document.getElementById('depSelect').value;
+  const type = document.getElementById('typeSelect').value;
+  const annee = document.getElementById('anneeSelect').value;
+  const sort = document.getElementById('sortSelect').value;
+
+  state.currentPage = page;
+
+  let list = state.all;
+
+  if (pref) list = list.filter(d => (d.prefecture || '—') === pref);
+  if (dep) list = list.filter(d => d.departement === dep);
+  if (type) list = list.filter(d => d.type === type);
+  if (annee) list = list.filter(d => String(d.annee) === annee);
+
+  if (q){
+    list = list.filter(d =>
+      (d.titre || '').toLowerCase().includes(q) ||
+      (d.numero || '').toLowerCase().includes(q) ||
+      (d.departement || '').toLowerCase().includes(q) ||
+      (d.nom_departement || '').toLowerCase().includes(q) ||
+      (d.prefecture || '').toLowerCase().includes(q) ||
+      (d.region || '').toLowerCase().includes(q)
+    );
+  }
+
+  const collator = new Intl.Collator('fr');
+  if (sort === 'recent'){
+    list = [...list].sort((a,b) => {
+      const da = a.date_publication || a.mise_a_jour || '';
+      const db = b.date_publication || b.mise_a_jour || '';
+      return db.localeCompare(da);
+    });
+  } else if (sort === 'old'){
+    list = [...list].sort((a,b) => {
+      const da = a.date_publication || a.mise_a_jour || '';
+      const db = b.date_publication || b.mise_a_jour || '';
+      return da.localeCompare(db);
+    });
+  } else if (sort === 'pref'){
+    list = [...list].sort((a,b) => {
+      const pa = a.prefecture || '', pb = b.prefecture || '';
+      const c = pa.localeCompare(pb, 'fr');
+      if (c !== 0) return c;
+      return (b.date_publication || '').localeCompare(a.date_publication || '');
+    });
+  } else if (sort === 'dep_code'){
+    list = [...list].sort((a,b) => {
+      const c = String(a.departement).localeCompare(String(b.departement));
+      if (c !== 0) return c;
+      return (b.date_publication || '').localeCompare(a.date_publication || '');
+    });
+  } else if (sort === 'title'){
+    list = [...list].sort((a,b) => collator.compare(a.titre || '', b.titre || ''));
+  }
+
+  state.filtered = list;
+  state.totalResults = list.length;
+
+  document.getElementById('tbShown').textContent = formatNumber(list.length);
+
+  const totalPages = Math.max(1, Math.ceil(list.length / state.pageSize));
+  const current = Math.min(Math.max(1, page), totalPages);
+  state.currentPage = current;
+
+  const startIdx = (current - 1) * state.pageSize;
+  const pageItems = list.slice(startIdx, startIdx + state.pageSize);
+  state.currentPageItems = pageItems;
+
+  renderResults(pageItems);
+  updatePaginationUI(totalPages, current);
+  document.getElementById('resultsArea').scrollTop = 0;
+}
+
+// ============================================================
+// RENDU DES RÉSULTATS
+// ============================================================
+function renderResults(items){
+  const area = document.getElementById('resultsArea');
+  if (!items.length){
+    area.innerHTML = `<div class="empty">
+      <div style="font-size:48px;margin-bottom:10px">🔍</div>
+      Aucun document ne correspond à vos critères.<br>
+      <button class="btn ghost" onclick="document.getElementById('resetFilters').click()" style="margin-top:14px">
+        🔄 Réinitialiser les filtres
+      </button>
+    </div>`;
+    return;
+  }
+
+  area.innerHTML = items.map(d => {
+    const meta = TYPE_META[d.type] || { icon:'📁', label: d.type || 'Autre' };
+    return `
+      <article class="result-card type-${escapeHtml(d.type)}" data-id="${escapeHtml(d.id)}">
+        <div class="rc-head">
+          <div class="rc-title">${escapeHtml(d.titre || '(sans titre)')}</div>
+          <div class="rc-badges">
+            <span class="rc-badge type-${escapeHtml(d.type)}">${meta.icon} ${escapeHtml(meta.label)}</span>
+            <span class="rc-badge pref">🏛️ ${escapeHtml(d.prefecture || '—')}</span>
+            <span class="rc-badge dep">📍 ${escapeHtml(d.departement || '—')}</span>
+            ${d.region ? `<span class="rc-badge region">${escapeHtml(d.region)}</span>` : ''}
+            ${d.annee ? `<span class="rc-badge annee">📅 ${escapeHtml(String(d.annee))}</span>` : ''}
+          </div>
+        </div>
+        <div class="rc-org">
+          🏛️ <span class="pref-name">${escapeHtml(d.prefecture || '—')}</span>
+          · ${escapeHtml(d.nom_departement || d.departement || '—')} (${escapeHtml(d.departement || '—')})
+          ${d.numero ? ` · N° <strong>${escapeHtml(d.numero)}</strong>` : ''}
+        </div>
+        <div class="rc-meta">
+          ${d.date_publication ? `<span class="tag">📅 Publié le ${escapeHtml(parseDisplayDate(d.date_publication))}</span>` : ''}
+          ${d.mise_a_jour ? `<span class="tag">🔄 MAJ ${escapeHtml(formatDate(d.mise_a_jour))}</span>` : ''}
+        </div>
+        <div class="rc-actions">
+          <a class="btn primary" href="${escapeHtml(d.url)}" target="_blank" rel="noopener">
+            🌐 Ouvrir le PDF
+          </a>
+          <button class="btn secondary" data-copy="${escapeHtml(d.url)}">📋 Copier l'URL</button>
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  area.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const ok = await copyText(btn.dataset.copy);
+      showToast(ok ? '📋 URL copiée' : '❌ Impossible de copier', ok ? 'success' : 'error');
+    });
+  });
+}
+
+// ============================================================
+// PAGINATION
+// ============================================================
+function updatePaginationUI(totalPages, current){
+  document.getElementById('paginationInfo').innerHTML =
+    `<strong>${formatNumber(state.totalResults)}</strong> résultats · page <strong>${current}</strong> / ${totalPages}`;
+  document.getElementById('pageInput').value = current;
+  document.getElementById('pageInput').max = totalPages;
+  document.getElementById('pageTotal').textContent = `/ ${totalPages}`;
+  document.getElementById('pageFirst').disabled = current <= 1;
+  document.getElementById('pagePrev').disabled = current <= 1;
+  document.getElementById('pageNext').disabled = current >= totalPages;
+  document.getElementById('pageLast').disabled = current >= totalPages;
+  document.getElementById('paginationBar').hidden = false;
+}
+
+function goToPage(p){
+  const totalPages = Math.max(1, Math.ceil(state.totalResults / state.pageSize));
+  runSearch(Math.max(1, Math.min(totalPages, p)));
+}
+
+// ============================================================
+// EXPORTS
+// ============================================================
+function exportCsv(){
+  const list = state.filtered;
+  if (!list.length){ showToast('⚠️ Aucun résultat à exporter', 'error'); return; }
+  const cols = ['departement','nom_departement','prefecture','region','titre','type','numero','date_publication','annee','url','mise_a_jour'];
+  const escapeCsv = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
+  const lines = [cols.join(',')];
+  list.forEach(d => lines.push(cols.map(c => escapeCsv(d[c])).join(',')));
+  const blob = new Blob(['\uFEFF' + lines.join('\n')], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `raa_export_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast(`📥 ${list.length} documents exportés`, 'success');
+}
+
+async function copyAllLinks(){
+  const list = state.filtered;
+  if (!list.length){ showToast('⚠️ Aucun lien à copier', 'error'); return; }
+  const ok = await copyText(list.map(d => d.url).join('\n'));
+  showToast(ok ? `📋 ${list.length} liens copiés` : '❌ Erreur', ok ? 'success' : 'error');
+}
+
+function resetFilters(){
+  document.getElementById('queryInput').value = '';
+  document.getElementById('prefSelect').value = '';
+  document.getElementById('depSelect').value = '';
+  document.getElementById('typeSelect').value = '';
+  document.getElementById('anneeSelect').value = '';
+  document.getElementById('sortSelect').value = 'recent';
+  document.getElementById('sourceSearch').value = '';
+  state.activeType = null;
+  renderCategories();
+  runSearch(1);
+  showToast('🔄 Filtres réinitialisés', 'success');
+}
+
+// ============================================================
+// ÉVÉNEMENTS
+// ============================================================
+const debouncedSearch = debounce(() => runSearch(1), DEBOUNCE_MS);
+
+document.getElementById('searchBtn').addEventListener('click', () => runSearch(1));
+document.getElementById('queryInput').addEventListener('input', debouncedSearch);
+document.getElementById('queryInput').addEventListener('keypress', e => { if (e.key === 'Enter') runSearch(1); });
+document.getElementById('prefSelect').addEventListener('change', () => runSearch(1));
+document.getElementById('depSelect').addEventListener('change', () => runSearch(1));
+document.getElementById('typeSelect').addEventListener('change', () => {
+  state.activeType = document.getElementById('typeSelect').value || null;
+  renderCategories();
+  runSearch(1);
+});
+document.getElementById('anneeSelect').addEventListener('change', () => runSearch(1));
+document.getElementById('sortSelect').addEventListener('change', () => runSearch(1));
+document.getElementById('sourceSearch').addEventListener('input', debounce(renderCategories, 150));
+
+document.getElementById('pageFirst').addEventListener('click', () => goToPage(1));
+document.getElementById('pagePrev').addEventListener('click', () => goToPage(state.currentPage - 1));
+document.getElementById('pageNext').addEventListener('click', () => goToPage(state.currentPage + 1));
+document.getElementById('pageLast').addEventListener('click', () => goToPage(Math.ceil(state.totalResults / state.pageSize)));
+document.getElementById('pageInput').addEventListener('change', e => goToPage(parseInt(e.target.value) || 1));
+document.getElementById('pageSizeSelect').addEventListener('change', e => {
+  state.pageSize = parseInt(e.target.value);
+  runSearch(1);
+});
+
+document.getElementById('exportCsv').addEventListener('click', exportCsv);
+document.getElementById('copyLinks').addEventListener('click', copyAllLinks);
+document.getElementById('resetFilters').addEventListener('click', resetFilters);
+
+document.addEventListener('keydown', e => {
+  if (e.key === '/' && document.activeElement.tagName !== 'INPUT'){
+    e.preventDefault();
+    document.getElementById('queryInput').focus();
+  }
+  if (e.key === 'Escape'){
+    document.getElementById('queryInput').blur();
+  }
+});
+
+document.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>
